@@ -1,0 +1,20 @@
+{
+  "name": "node-serve-tool",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/index.js",
+    "test": "node src/test.js",
+    "format": "prettier src --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^24.17.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
