@@ -1,0 +1,29 @@
+{
+    "denghuan@redu.com": {
+        "ssid_ucp_v1": "1.0.0-KGNmY2VmNTljMzM1YmZhNWQ3OThjNDM5YTQ1MzQ3YTAxZjc2ZjAxMzMKFwiXx_CotvWJBxCYyte1BhiPETgBQOsHGgJscSIgM2E0MzU3NTM4N2E3NjZjNGU1Y2U1MjljZDFmNzkwNjk",
+        "buyin_app_id_v2": "26312",
+        "buyin_shop_type": "23",
+        "is_staff_user": "false",
+        "sid_ucp_v1": "1.0.0-KGNmY2VmNTljMzM1YmZhNWQ3OThjNDM5YTQ1MzQ3YTAxZjc2ZjAxMzMKFwiXx_CotvWJBxCYyte1BhiPETgBQOsHGgJscSIgM2E0MzU3NTM4N2E3NjZjNGU1Y2U1MjljZDFmNzkwNjk",
+        "sessionid": "3a43575387a766c4e5ce529cd1f79069",
+        "SASID": "SID2_7401065856800080155",
+        "uid_tt": "00fc177836efd3c602a0212ee987e4c5",
+        "buyin_account_child_type_v2": "2",
+        "uid_tt_ss": "00fc177836efd3c602a0212ee987e4c5",
+        "passport_csrf_token_default": "d6574ba142dc5b7646a255de926166bd",
+        "buyin_shop_type_v2": "23",
+        "ucas_c0_ss_buyin": "CkEKBTEuMC4wELSIjLyVovnaZhi9LyCrgaDKqo3XBiiPETCXx_CotvWJB0CYyte1BkiY_pO4BlCnvJbo56CU1WNYfBIUnUsnNxOCj9RjnI8_yJCYigMFteI",
+        "sid_tt": "3a43575387a766c4e5ce529cd1f79069",
+        "_tea_utm_cache_3813": "undefined",
+        "BUYIN_SASID": "SID2_7401065856800080155",
+        "buyin_app_id": "26312",
+        "buyin_account_child_type": "2",
+        "ucas_c0_buyin": "CkEKBTEuMC4wELSIjLyVovnaZhi9LyCrgaDKqo3XBiiPETCXx_CotvWJB0CYyte1BkiY_pO4BlCnvJbo56CU1WNYfBIUnUsnNxOCj9RjnI8_yJCYigMFteI",
+        "s_v_web_id": "verify_lzmit4xg_JjUP6Jrz_qFpJ_4PpC_8tMx_tO8txZYObBKj",
+        "sessionid_ss": "3a43575387a766c4e5ce529cd1f79069",
+        "sid_guard": "3a43575387a766c4e5ce529cd1f79069%7C1723196696%7C5184000%7CTue%2C+08-Oct-2024+09%3A44%3A56+GMT",
+        "passport_csrf_token": "d6574ba142dc5b7646a255de926166bd",
+        "store-region": "cn-zj",
+        "store-region-src": "uid"
+    }
+}
