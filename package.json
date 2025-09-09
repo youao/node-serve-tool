@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node src/index.js",
-    "test": "node src/test.js",
+    "test": "node src/test/test.js",
     "format": "prettier src --write"
   },
   "keywords": [],
