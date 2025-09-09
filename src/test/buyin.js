@@ -4,6 +4,7 @@ import { writeFileSync } from "node:fs";
 
 import puppeteer from "puppeteer";
 import accountCookies from "../caches/buyin.cookies.json" with { type: "json" };
+import { fetchBuyinLoginByEmail } from "../libs/buyin.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,193 +46,7 @@ const cookieDomain = {
   "gfkadpd": ["buyin.jinritemai.com"]
 };
 
-const acookie = [
-  {
-    domain: "buyin.jinritemai.com",
-    hostOnly: true,
-    httpOnly: false,
-    name: "business-account-center-csrf-token",
-    path: "/",
-    sameSite: null,
-    secure: true,
-    session: true,
-    storeId: null,
-    value: "Tst1Rwe4-X5Oonnhlud9QAjytDX6EYv3iSpQ"
-  },
-  {
-    domain: "buyin.jinritemai.com",
-    hostOnly: true,
-    httpOnly: false,
-    name: "csrf_session_id",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: true,
-    storeId: null,
-    value: "f24e3dcf5ffebf78ee8a8615de510b1a"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1762151248.5776,
-    hostOnly: false,
-    httpOnly: true,
-    name: "uid_tt_ss",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value: "cb0019463071a38a4bcf21533e9a313d"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1788501099.501337,
-    hostOnly: false,
-    httpOnly: true,
-    name: "ttwid",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value:
-      "1%7C4nN3r0ojaOL_TI3OIXAaCapLU--7dMT4IRWOYqsVEn8%7C1756965100%7Ce4b0149ddcfcdfa0203e073ace08b2b3e2cc7a27d4183ae7bf54820bbdea7e89"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1757930693.869487,
-    hostOnly: false,
-    httpOnly: false,
-    name: "passport_csrf_token",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value: "9abae34f0881f4ae8e0a9aff03cef9ee"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1761360629.746847,
-    hostOnly: false,
-    httpOnly: true,
-    name: "passport_mfa_token",
-    path: "/",
-    sameSite: null,
-    secure: true,
-    session: false,
-    storeId: null,
-    value:
-      "CjE93HuMOLh5TBo0QWwwqZTI1jt1f7ekT6XE4jujuEwvAJoWGHoLxUmwxnorDXlmrTJlGkoKPAAAAAAAAAAAAABPZdZpG9k6amk26qPbn02KgYQX4tAqUdV%2FpQpVpeWzj5vWS3l8AwrUknXiVTAnmCJntBC6u%2FoNGPax0WwgAiIBA5CTaqQ%3D"
-  },
-  {
-    domain: "buyin.jinritemai.com",
-    hostOnly: true,
-    httpOnly: true,
-    name: "business-account-center-csrf-secret",
-    path: "/",
-    sameSite: null,
-    secure: true,
-    session: true,
-    storeId: null,
-    value: "d264c434bbe9c0d8a54c565dc106d112"
-  },
-  {
-    domain: "buyin.jinritemai.com",
-    expirationDate: 1757151855,
-    hostOnly: true,
-    httpOnly: false,
-    name: "gfkadpd",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value: "2631,22740"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1759557101.415651,
-    hostOnly: false,
-    httpOnly: true,
-    name: "passport_auth_status_ss",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value: "aa81fbc8ed7f81d23d0484ebf022e3c0%2C52d86e34d07e32c57596499574948c0f"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1762151248.578831,
-    hostOnly: false,
-    httpOnly: true,
-    name: "session_tlb_tag",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value:
-      "sttt%7C5%7CC31uwzC2UyOHExwKayXwJ__________Wwevy-wx6Eka4oz5wWSDFKH4T6Z-_je5uSKDWb1GMivI%3D"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1762151248.578535,
-    hostOnly: false,
-    httpOnly: true,
-    name: "sessionid_ss",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value: "0b7d6ec330b6532387131c0a6b25f027"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1762151248.579438,
-    hostOnly: false,
-    httpOnly: true,
-    name: "sid_ucp_v1",
-    path: "/",
-    sameSite: null,
-    secure: true,
-    session: false,
-    storeId: null,
-    value:
-      "1.0.0-KGE1NGIyMDY1YTUzOTRhYmQ2NWExYjM0NWI0MTVhZWYyMjdmMDYxMDYKFgjzyoD85syqAhDR4uTFBhiPETgIQCYaAmhsIiAwYjdkNmVjMzMwYjY1MzIzODcxMzFjMGE2YjI1ZjAyNw"
-  },
-  {
-    domain: ".jinritemai.com",
-    expirationDate: 1762151248.579737,
-    hostOnly: false,
-    httpOnly: true,
-    name: "ssid_ucp_v1",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value:
-      "1.0.0-KGE1NGIyMDY1YTUzOTRhYmQ2NWExYjM0NWI0MTVhZWYyMjdmMDYxMDYKFgjzyoD85syqAhDR4uTFBhiPETgIQCYaAmhsIiAwYjdkNmVjMzMwYjY1MzIzODcxMzFjMGE2YjI1ZjAyNw"
-  },
-  {
-    domain: ".buyin.jinritemai.com",
-    expirationDate: 1762151248.57642,
-    hostOnly: false,
-    httpOnly: true,
-    name: "ucas_c0_ss_buyin",
-    path: "/",
-    sameSite: "no_restriction",
-    secure: true,
-    session: false,
-    storeId: null,
-    value:
-      "CkEKBTEuMC4wEKqIkZzXqczcaBi9LyD86qDaxqzEBCiPETDzyoD85syqAkDR4uTFBkjRlqHIBlCJvMzC-tXx1WhYfhIUiZnpwusAqHm9qUinXMeVlTNqKg8"
-  }
-];
+// https://buyin.jinritemai.com/index/getUser
 
 const setPageCookies = async (cookies) => {
   const arr = [];
@@ -250,8 +65,6 @@ const setPageCookies = async (cookies) => {
   }
   await globalBrowser.setCookie(...arr);
 };
-
-start();
 
 async function start() {
   await puppeteerPage.evaluateOnNewDocument(() => {
@@ -308,23 +121,7 @@ async function start() {
     "Accept-Encoding": "gzip, deflate, br, zstd"
   });
 
-  // await setPageCookies(accountCookies["youao2588@qq.com"]);
-  await globalBrowser.setCookie(
-    ...acookie.map((item) => {
-      return {
-        domain: item.domain,
-        // hostOnly: true,
-        // httpOnly: false,
-        name: item.name,
-        // path: "/",
-        // sameSite: null,
-        // secure: true,
-        // session: true,
-        // storeId: null,
-        value: item.value
-      };
-    })
-  );
+  await setPageCookies(accountCookies["29006754@qq.com"]);
   await puppeteerPage.setViewport({ width: 0, height: 0 });
 
   puppeteerPage.on("requestfailed", async (request) => {
@@ -341,16 +138,33 @@ async function start() {
     console.log("[response]-url: ", url);
   });
 
-  await puppeteerPage.goto("https://buyin.jinritemai.com/dashboard", {
-    waitUntil: "domcontentloaded",
-    timeout: 0
-  });
-}
-
-function setAccountCookie(email, cookie) {
-  accountCookies[email] = cookie;
-  writeFileSync(
-    path.resolve(__dirname, "./account.json"),
-    JSON.stringify(accountCookies, null, 2)
+  await puppeteerPage.goto(
+    "https://buyin.jinritemai.com/dashboard/institution/activity",
+    {
+      waitUntil: "domcontentloaded",
+      timeout: 0
+    }
   );
 }
+
+// fetchBuyinLoginByEmail({
+//   email: "29006754@qq.com",
+//   password: "Wygdy123654.",
+//   account: "热度星推"
+// })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// function setAccountCookie(email, cookie) {
+//   accountCookies[email] = cookie;
+//   writeFileSync(
+//     path.resolve(__dirname, "./account.json"),
+//     JSON.stringify(accountCookies, null, 2)
+//   );
+// }
+
+start();

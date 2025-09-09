@@ -57,5 +57,6 @@ export function fetchBuyinLoginByEmail(params) {
   const path =
     "https://e.reduxingxuan.com/bj/baize/api/douyin/selenium/autoLoginBuyInByEmail";
   const url = urlJoin(path, params);
+  console.log(url);
   return fetch(url).then((res) => res.json());
 }

@@ -40,12 +40,12 @@ export function urlJoin(url, params) {
     url = obj.path;
     params = { ...obj.params, ...params };
   }
-  return url + "?" + queryStringParse(params);
+  return url + "?" + objectToQueryString(params);
 }
 
 export function queryStringParse(str) {
   const obj = {};
-  if (!url || typeof url !== "string") return obj;
+  if (!str || typeof str !== "string") return obj;
   str.split("&").forEach((item) => {
     const [k, v] = item.split("=");
     obj[k] = v;
@@ -55,9 +55,9 @@ export function queryStringParse(str) {
 
 export function objectToQueryString(obj) {
   if (typeof obj !== "object") return "";
-  let str = "";
+  const arr = [];
   for (let k in obj) {
-    str += `${k}=${obj[k]}`;
+    arr.push(`${k}=${obj[k]}`);
   }
-  return str;
+  return arr.join("&");
 }
