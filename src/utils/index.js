@@ -1,10 +1,15 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export function srcPath(url) {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
   return path.resolve(__dirname, "../" + url);
+}
+
+export function rootPath(url) {
+  return path.resolve(__dirname, "../../" + url);
 }
 
 export function urlParse(url) {
