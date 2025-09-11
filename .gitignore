@@ -1,5 +1,5 @@
 .vscode
+caches
 dist
 node_modules
 pnpm-lock.yaml
-**/caches/**

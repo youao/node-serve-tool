@@ -66,3 +66,7 @@ export function objectToQueryString(obj) {
   }
   return arr.join("&");
 }
+
+export function sleep(duration) {
+  return new Promise((resolve) => setTimeout(resolve, duration));
+}
